@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: fitness_discipline_seed
+    description: Fitness discipline reference data
+    columns:
+      - name: fitness_discipline
+        description: "Canonical discipline name (e.g., 'Cycling', 'Running')."
+        tests:
+          - unique
+          - not_null
+      - name: is_active
+        description: "Flag indicating whether the discipline is currently in use."
+        tests:
+          - not_null

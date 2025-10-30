@@ -1,11 +1,11 @@
-Welcome to your new dbt project!
+Welcome to my sandbox dbt project!!!
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
-
+# BigQuery set up
+1. Create dev and production GCP projects.
+2. Create service account in DEV.
+   name = [name]-dev-serv-acc
+   description = dev access to GCP
+   permissions = BigQuery Admin
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)

@@ -1,0 +1,9 @@
+fitness_discipline,is_active
+walking,TRUE
+running,TRUE
+stretching,TRUE
+strength,TRUE
+cycling,TRUE
+yoga,TRUE
+swimming,TRUE
+climbing,FALSE
