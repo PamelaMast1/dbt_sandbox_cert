@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: fitness_type_seed
+    description: Fitness type reference data
+    columns:
+      - name: fitness_type
+        description: "Canonical type name (e.g., 'yoga', 'lower')."
+        tests:
+          - unique
+          - not_null
+      - name: is_active
+        description: "Flag indicating whether the type is currently in use."
+        tests:
+          - not_null

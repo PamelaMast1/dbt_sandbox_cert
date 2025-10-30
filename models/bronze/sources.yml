@@ -1,0 +1,190 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: "{{ target.database }}"
+    schema: bronze
+
+    # loaded_at_field: INSERT_TIMESTAMP            
+    # freshness:
+    #   warn_after: {count: 300, period: day}
+    #   error_after: {count: 350, period: day}
+
+    tables:
+      - name: raw_workout_data
+        description: "Raw user workout data ingested from source system."
+        # tests:
+        #   - model_rows_vs_actual_rows:
+        #       tags: [prod_only_test]
+        #   - model_schema_drift:
+        #       table_name: raw_workout_data
+        #       tags: [prod_only_test]
+        #   - model_empty_records:
+        #       tags: [prod_only_test]  
+        #   - model_duplicate_files:
+        #       tags: [prod_only_test]
+        # columns:
+        #   - name: pmapp_userid
+        #     description: "Persistent user id assigned to the customer from app."
+        #     meta:
+        #       tags: ["pii"]
+        #       classification: "pii"
+        #     tests:
+        #       - not_null:
+        #           tags: [prod_only_test] 
+
+        #   - name: workout_timestamp
+        #     description: "The timestamp when the workout session took place (mixed timezones GMT, BST etc)"
+        #     meta:
+        #       tags: ["pii"]
+        #       classification: "pii"
+        #     tests:
+        #       - not_null:
+        #           tags: [prod_only_test]
+
+        #   - name: live_on_demand
+        #     description: "Class delivery method, whether it was live or pre-recorded."
+        #     meta:
+        #       tags: ["non_sensitive"] 
+        #       classification: "non_sensitive"
+
+        #   - name: instructor_name
+        #     description: "Obfuscated instructor names."
+        #     meta:
+        #       tags: ["non_sensitive"] 
+        #       classification: "non_sensitive"
+
+        #   - name: length_minutes
+        #     description: "Duration of the workout session in minutes. Some sessions may have flexible durations. (1.5 hr = 90)"
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: fitness_discipline
+        #     description: "The type of fitness activity performed, such as yoga, cycling, or strength training."
+        #     meta:
+        #       tags: ["non_sensitive"] 
+        #       classification: "non_sensitive"
+
+        #   - name: type
+        #     description: "Sub Type of the fitness discipline, such as relaxation, bodyweight, post ride etc "
+        #     meta:
+        #       tags: ["non_sensitive"] 
+        #       classification: "non_sensitive"
+
+        #   - name: title
+        #     description: "The title or name of the workout session, if available."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: class_timestamp
+        #     description: "he timestamp when the workout class was published. Workout timestamp is the time the user took the class."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: total_output
+        #     description: "The total estimated power output of the workout. Output can be 0 for certain exercise."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_watts
+        #     description: "Average power output in watts during the session, calculated based on user performance."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_resistance
+        #     description: "Average resistance applied during the session, measured as a percentage from 0 to 100%."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_cadence_rpm
+        #     description: "Average cadence or rotations per minute (RPM) during the session, typically for cycling-related workouts."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_speed_mph
+        #     description: "Average speed during the session (mph)"
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: distance_mi
+        #     description: "Total distance covered during the session (miles)"
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: calories_burned
+        #     description: "Total calories burned during the session. This may vary based on factors like heart rate and user profile."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_heartrate
+        #     description: "Average heart rate during the session, measured in beats per minute."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_incline
+        #     description: "Average incline applied during the session, relevant for treadmill or incline-based activities."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: avg_pace_min_mi
+        #     description: "Average pace during the session, measured in minutes per km for activities such as running, cycling, or rowing. (miles)"
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+
+        #   - name: FILE_DATETIME
+        #     description: "Date the file data pertains to."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+        #     tests:
+        #     - not_null:
+        #           tags: [prod_only_test]
+
+        #   - name: FILE_SIZE
+        #     description: "Size of file uploaded."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+        #       notes: "Can become user-identifiable in single-user uploads with unique ingestion patterns."
+        #     tests:
+        #     - not_null
+
+        #   - name: FILE_NAME
+        #     description: "Name of file uploaded."
+        #     meta:
+        #       tags: ["PII"] 
+        #       classification: "PII"
+        #       notes: "Contain the pmapp user identifier."
+        #     tests:
+        #     - not_null
+
+        #   - name: INSERT_TIMESTAMP
+        #     description: "Timestamp when file processed."
+        #     meta:
+        #       tags: ["non_sensitive"] 
+        #       classification: "non_sensitive"
+        #     tests:
+        #     - not_null
+
+        #   - name: ROWCOUNT
+        #     description: "Number of rows of file uploaded."
+        #     meta:
+        #       tags: ["sensitive"] 
+        #       classification: "sensitive"
+        #       notes: "Can become user-identifiable in single-user uploads with unique ingestion patterns."
+        #     tests:
+        #     - not_null
+            
