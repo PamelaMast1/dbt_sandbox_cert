@@ -16,7 +16,7 @@ model-paths: ["models"]
 #analysis-paths: ["analyses"]
 #test-paths: ["tests"]
 seed-paths: ["seeds"]
-#macro-paths: ["macros"]
+macro-paths: ["macros"]
 #snapshot-paths: ["snapshots"]
 
 target-path: "target"  # directory which will store compiled SQL files
@@ -24,30 +24,14 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
 on-run-start:
   - "{% do run_query('CREATE SCHEMA IF NOT EXISTS `'
-        ~ target.project ~ '`.bronze') %}"
+        ~ target.project ~ '`.audit') %}"
   - "{% do run_query('CREATE TABLE IF NOT EXISTS `'
-        ~ target.project ~ '`.bronze.raw_workout_data (\
-          workout_id STRING,\
-          workout_timestamp TIMESTAMP,\
-          length_minutes INT64,\
-          class_title STRING,\
-          total_output FLOAT64,\
-          avg_watts FLOAT64,\
-          distance_km FLOAT64,\
-          calories_burned INT64,\
-          avg_heartrate_bpm INT64,\
-          fitness_discipline STRING,\
-          instructor STRING)') %}"
+        ~ target.project ~ '`.audit.run_log (invocation_id STRING, started_at TIMESTAMP, user STRING, env STRING)') %}"
   - "{% do run_query('INSERT INTO `'
-        ~ target.project ~ '`.bronze.raw_workout_data \
-          (workout_id, workout_timestamp, length_minutes, class_title, total_output, avg_watts, distance_km, calories_burned, avg_heartrate_bpm, fitness_discipline, instructor) VALUES \
-          (\\'w1\\', TIMESTAMP(\\'2025-10-01 09:00:00+00\\'), 30, \\'HIIT Ride\\', 320.5, 210.0, 14.2, 350, 145, \\'Cycling\\', \\'Alex T\\'), \
-          (\\'w2\\', TIMESTAMP(\\'2025-10-02 18:30:00+00\\'), 45, \\'Endurance Run\\', 500.0, 185.0, 8.5, 520, 152, \\'Treadmill\\', \\'Jess S\\'), \
-          (\\'w3\\', TIMESTAMP(\\'2025-10-03 07:15:00+00\\'), 20, \\'Yoga Flow\\', 120.0, NULL, 0.0, 80, 98, \\'Yoga\\', \\'Aditi S\\')') %}"
-
+        ~ target.project ~ '`.audit.run_log (invocation_id, started_at, user, env) '
+        ~ 'VALUES (\\'' ~ invocation_id ~ '\\', CURRENT_TIMESTAMP(), SESSION_USER(), \\'' ~ target.name ~ '\\')') %}"
 
 
 # Configuring models
@@ -62,19 +46,19 @@ on-run-start:
 
 models:
   dbt_sandbox_cert:
-    bronze:
-    +schema: bronze
+    sources:
+    +schema: sources
   
 seeds:
   dbt_sandbox_cert:
     +schema: reference
     +quote_columns: false
-    fitness_discipline:
+    fitness_disciplines:
       +schema: reference
       +column_types:
         fitness_discipline: string
         is_active: boolean 
-    fitness_type_seed:
+    fitness_types:
       +schema: reference
       +column_types:
         fitness_type: string

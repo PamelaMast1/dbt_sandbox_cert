@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ target.project }}"
+    schema: sources  
+    description: "Raw workout events"
+    freshness:
+      warn_after: {count: 7, period: day}
+      error_after: {count: 30, period: day}
+    loaded_at_field: INSERT_TIMESTAMP
+
+    tables:
+      - name: raw_workout_data
+        description: "One row per workout session"
+        columns:
+          - name: workout_id
+            description: "Source identifier for the workout (string)"
+          - name: workout_timestamp
+            description: "UTC timestamp when the workout started"
+          - name: length_minutes
+            description: "Duration of the workout in minutes"
+          - name: class_title
+            description: "Title/name of the workout class"
+          - name: total_output
+            description: "Total output for the session (platform-specific units)"
+          - name: avg_watts
+            description: "Average power output in watts"
+          - name: distance_km
+            description: "Distance covered in kilometers"
+          - name: calories_burned
+            description: "Calories burned during the session"
+          - name: avg_heartrate_bpm
+            description: "Average heart rate in beats per minute"
+          - name: fitness_discipline
+            description: "Workout discipline (e.g., cycling, running)"
+          - name: instructor
+            description: "Instructor display name"
+          - name: INSERT_TIMESTAMP
+            description: "Workout timestamp"
+          - name: ROW_COUNT
+            description: "Rows from source on that run"
