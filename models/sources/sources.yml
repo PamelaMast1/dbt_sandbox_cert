@@ -16,7 +16,7 @@ sources:
         description: "One row per workout session"
         columns:
           - name: workout_id
-            description: "Source identifier for the workout (string)"
+            description: "{{ doc('workout_id') }}"
           - name: workout_timestamp
             description: "UTC timestamp when the workout started"
           - name: length_minutes
@@ -38,6 +38,6 @@ sources:
           - name: instructor
             description: "Instructor display name"
           - name: INSERT_TIMESTAMP
-            description: "Workout timestamp"
+            description: "{{ doc('INSERT_TIMESTAMP') }}"
           - name: ROW_COUNT
             description: "Rows from source on that run"

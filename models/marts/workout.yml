@@ -5,7 +5,7 @@ models:
     description: "Curated workout facts built from stg_workout."
     columns:
       - name: workout_id
-        description: "Stable identifier for the workout."
+        description: "{{ doc('workout_id') }}"
         tests:
           - not_null
           - unique

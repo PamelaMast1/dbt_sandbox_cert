@@ -21,6 +21,7 @@ model-paths: ["models"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
+docs-paths: ["docs"]
 #snapshot-paths: ["snapshots"]
 
 target-path: "target"  # directory which will store compiled SQL files
@@ -54,6 +55,9 @@ on-run-end:
 # using the `{{ config(...) }}` macro.
 
 models:
+  +persist_docs:
+    relation: true
+    columns: true
   dbt_sandbox_cert:
     staging:
       schema: staging
@@ -63,6 +67,9 @@ models:
       schema: marts
   
 seeds:
+  +persist_docs:
+    relation: true
+    columns: true
   dbt_sandbox_cert:
     +schema: reference
     +quote_columns: false
