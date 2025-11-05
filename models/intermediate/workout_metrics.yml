@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: workout_metrics
+    description: "Ephemeral transform that derives workout metrics; inlined wherever it's ref()'d."
+    config:
+      materialized: ephemeral
+      tags: ["intermediate", "ephemeral"]

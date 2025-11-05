@@ -57,6 +57,8 @@ models:
   dbt_sandbox_cert:
     staging:
       schema: staging
+    intermediate:
+      schema: intermediate
     marts:
       schema: marts
   
