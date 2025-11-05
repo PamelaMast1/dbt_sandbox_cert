@@ -46,8 +46,8 @@ on-run-start:
 
 models:
   dbt_sandbox_cert:
-    sources:
-    +schema: sources
+    staging:
+      schema: staging
   
 seeds:
   dbt_sandbox_cert:
