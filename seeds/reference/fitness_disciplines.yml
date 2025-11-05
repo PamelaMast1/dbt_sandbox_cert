@@ -1,7 +1,7 @@
 version: 2
 
 seeds:
-  - name: fitness_discipline_seed
+  - name: fitness_disciplines
     description: Fitness discipline reference data
     columns:
       - name: fitness_discipline

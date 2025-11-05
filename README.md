@@ -7,6 +7,11 @@ Welcome to my sandbox dbt project!!!
    description = dev access to GCP
    permissions = BigQuery Admin
 
+# dbt project set up. 
+1. Generate the source tables with small amounts of test data - 
+   dbt run-operation bootstrap_sources_raw_workout_data
+
+
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
 - Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
