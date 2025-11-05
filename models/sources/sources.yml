@@ -8,6 +8,7 @@ sources:
     freshness:
       warn_after: {count: 7, period: day}
       error_after: {count: 30, period: day}
+      filter: "INSERT_TIMESTAMP >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 2 DAY)"
     loaded_at_field: INSERT_TIMESTAMP
 
     tables:
