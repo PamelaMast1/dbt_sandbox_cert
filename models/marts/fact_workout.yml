@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fact_workout
+    description: "Workout fact view built from ephemeral metrics."
+    columns:
+      - name: workout_id
+        tests: [not_null]
+      - name: workout_date
+        tests: [not_null]
+      - name: length_minutes
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: distance_km
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: output_per_min
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
