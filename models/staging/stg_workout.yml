@@ -5,7 +5,7 @@ models:
     description: "Deduplicated workouts from source.raw_workout_data, keeping the latest row per workout_id by INSERT_TIMESTAMP then workout_timestamp."
     columns:
       - name: workout_id
-        description: "Source workout identifier."
+        description: "{{ doc('workout_id') }}"
         tests:
           - not_null
           - unique
@@ -43,7 +43,7 @@ models:
         description: "Instructor display name."
 
       - name: INSERT_TIMESTAMP
-        description: "Ingestion/arrival timestamp used for dedupe ordering."
+        description: "{{ doc('INSERT_TIMESTAMP') }}"
         tests:
           - not_null
 
