@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_workout
+    description: "Deduplicated workouts from source.raw_workout_data, keeping the latest row per workout_id by INSERT_TIMESTAMP then workout_timestamp."
+    columns:
+      - name: workout_id
+        description: "Source workout identifier."
+        tests:
+          - not_null
+          - unique
+
+      - name: workout_timestamp
+        description: "Event time of the workout."
+        tests:
+          - not_null
+
+      - name: length_minutes
+        description: "Workout duration (minutes)."
+
+      - name: class_title
+        description: "Workout/class title."
+
+      - name: total_output
+        description: "Total measured output for the session."
+
+      - name: avg_watts
+        description: "Average power output (watts)."
+
+      - name: distance_km
+        description: "Distance covered (km)."
+
+      - name: calories_burned
+        description: "Estimated calories burned."
+
+      - name: avg_heartrate_bpm
+        description: "Average heart rate (bpm)."
+
+      - name: fitness_discipline
+        description: "Discipline (e.g., CYCLING, TREADMILL, YOGA)."
+
+      - name: instructor
+        description: "Instructor display name."
+
+      - name: INSERT_TIMESTAMP
+        description: "Ingestion/arrival timestamp used for dedupe ordering."
+        tests:
+          - not_null
+
+      - name: ROW_COUNT
+        description: "Row counter from source (if present)."
+        tests:
+          - not_null
+
+      - name: rn
+        description: "Row number over (PARTITION BY workout_id ORDER BY INSERT_TIMESTAMP DESC, workout_timestamp DESC). Used with QUALIFY rn=1."
