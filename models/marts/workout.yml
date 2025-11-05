@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: workout
+    description: "Curated workout facts built from stg_workout."
+    columns:
+      - name: workout_id
+        description: "Stable identifier for the workout."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('stg_workout')
+              field: workout_id
+
+      - name: workout_timestamp
+        description: "UTC timestamp when the workout occurred."
+        tests:
+          - not_null
+
+      - name: length_minutes
+        description: "Workout length in minutes."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: class_title
+        description: "Workout/class title as provided by the source."
+
+      - name: total_output
+        description: "Total output/effort for the workout (platform-defined units)."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: avg_watts
+        description: "Average power in watts (if applicable)."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: distance_km
+        description: "Distance covered in kilometers (if applicable)."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: calories_burned
+        description: "Estimated calories burned."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: avg_heartrate_bpm
+        description: "Average heart rate in beats per minute."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+
+      - name: fitness_discipline
+        description: "High-level workout type/discipline (e.g., Cycling, Running)."
+
+      - name: instructor
+        description: "Instructor name or pseudonym."

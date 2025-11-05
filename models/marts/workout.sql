@@ -14,11 +14,5 @@ SELECT  r.workout_id,
         r.calories_burned,
         r.avg_heartrate_bpm,
         r.fitness_discipline,
-        r.instructor,
-        r.INSERT_TIMESTAMP,
-        r.ROW_COUNT,
-        row_number() OVER (PARTITION BY workout_id
-                           ORDER BY INSERT_TIMESTAMP DESC, workout_timestamp DESC
-        ) as rn
-FROM {{ source('raw', 'raw_workout_data') }} AS r
-QUALIFY rn = 1
+        r.instructor
+FROM {{ ref('stg_workout') }} AS r
