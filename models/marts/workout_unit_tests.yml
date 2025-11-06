@@ -1,0 +1,64 @@
+version: 2
+
+unit_tests:
+  - name: expected_workout_derivations_and_bands
+    model: workout
+    description: >
+      Validates that the mart derives:
+      - workout_date = DATE(workout_timestamp)
+      - output_per_min = total_output / NULLIF(length_minutes, 0)
+      - avg_speed_kmh = distance_km / (length_minutes / 60)
+      And maps intensity_band by output_per_min:
+        < 6  -> 'Low'
+        6-10 -> 'Moderate'
+        > 10 -> 'High'
+    given:
+      - input: ref('stg_workout')
+        rows:
+      # Case 1: Moderate (exactly 10)
+          - workout_id: W1
+            workout_timestamp: "2025-01-05 07:30:00"
+            fitness_discipline: "Cycling"
+            instructor: "Emma"
+            length_minutes: 30
+            total_output: 300
+            distance_km: 12
+            calories_burned: 350
+            avg_heartrate_bpm:  
+      # Case 2: High intensity
+          - workout_id: W2
+            workout_timestamp: "2025-01-06 18:00:00"
+            fitness_discipline: "Cycling"
+            instructor: "Ben"
+            length_minutes: 45
+            total_output: 800
+            distance_km: 22.5
+            calories_burned: 600
+            avg_heartrate_bpm:  
+      # Case 3: Low intensity
+          - workout_id: W3
+            workout_timestamp: "2025-01-07 06:15:00"
+            fitness_discipline: "Rowing"
+            instructor: "Jess"
+            length_minutes: 20
+            total_output: 60
+            distance_km: 2.0
+            calories_burned: 120
+            avg_heartrate_bpm: 135
+    expect:
+      rows:
+        - workout_id: W1
+          workout_date: "2025-01-05"
+          output_per_min: 10.0      # 300 / 30
+          avg_speed_kmh: 24.0       # 12 / (30/60)
+          intensity_band: "Moderate" 
+        - workout_id: W2
+          workout_date: "2025-01-06"
+          output_per_min: 17.78      # 800 / 45
+          avg_speed_kmh: 30.0       # 22.5 / (45/60)
+          intensity_band: "High"
+        - workout_id: W3
+          workout_date: "2025-01-07"
+          output_per_min: 3.0       # 60 / 20
+          avg_speed_kmh: 6.0        # 2.0 / (20/60)
+          intensity_band: "Low"

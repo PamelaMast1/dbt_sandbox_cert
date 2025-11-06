@@ -10,7 +10,7 @@ models:
       - name: workout_timestamp
         description: "{{ doc('workout_timestamp') }}"
         tests: [not_null]
-      - name: total_output 
+      - name: total_output
         description: "{{ doc('total_output') }}"
       - name: workout_date
         tests: [not_null]
@@ -18,12 +18,15 @@ models:
         description: "{{ doc('length_minutes') }}"
         tests:
           - dbt_utils.expression_is_true:
-              expression: ">= 0"
+              arguments:
+                expression: ">= 0"
       - name: distance_km
         tests:
           - dbt_utils.expression_is_true:
-              expression: ">= 0"
+              arguments:
+                expression: ">= 0"
       - name: output_per_min
         tests:
           - dbt_utils.expression_is_true:
-              expression: ">= 0"
+              arguments:
+                expression: ">= 0"
