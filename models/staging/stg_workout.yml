@@ -16,7 +16,7 @@ models:
           - not_null
 
       - name: length_minutes
-        description: "Workout duration (minutes)."
+        description: "{{ doc('length_minutes') }}"
 
       - name: class_title
         description: "Workout/class title."

@@ -19,7 +19,7 @@ models:
           - not_null
 
       - name: length_minutes
-        description: "Workout length in minutes."
+        description: "{{ doc('length_minutes') }}"
         tests:
           - not_null
           - dbt_utils.expression_is_true:

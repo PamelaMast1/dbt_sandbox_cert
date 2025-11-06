@@ -13,6 +13,7 @@ models:
       - name: workout_date
         tests: [not_null]
       - name: length_minutes
+        description: "{{ doc('length_minutes') }}"
         tests:
           - dbt_utils.expression_is_true:
               expression: ">= 0"

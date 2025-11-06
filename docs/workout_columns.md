@@ -17,4 +17,9 @@ Source workout identifier.
 UTC timestamp when the workout started.
 {% enddocs %}
 
+{% docs length_minutes%}
+Duration of the workout in minutes.
+{% enddocs %}
+
+
 

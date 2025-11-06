@@ -20,7 +20,7 @@ sources:
           - name: workout_timestamp
             description: "{{ doc('workout_timestamp') }}"
           - name: length_minutes
-            description: "Duration of the workout in minutes"
+            description: "{{ doc('length_minutes') }}"
           - name: class_title
             description: "Title/name of the workout class"
           - name: total_output
