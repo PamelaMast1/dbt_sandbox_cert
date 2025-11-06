@@ -12,3 +12,9 @@ Typical format: `TIMESTAMP` in UTC.
 {% docs workout_id %}
 Source workout identifier.
 {% enddocs %}
+
+{% docs workout_timestamp %}
+UTC timestamp when the workout started.
+{% enddocs %}
+
+

@@ -14,7 +14,7 @@ models:
               field: workout_id
 
       - name: workout_timestamp
-        description: "UTC timestamp when the workout occurred."
+        description: "{{ doc('workout_timestamp') }}"
         tests:
           - not_null
 

@@ -11,7 +11,7 @@ models:
           - unique
 
       - name: workout_timestamp
-        description: "Event time of the workout."
+        description: "{{ doc('workout_timestamp') }}"
         tests:
           - not_null
 
