@@ -29,7 +29,7 @@ models:
         description: "{{ doc('class_title') }}"
 
       - name: total_output
-        description: "Total output/effort for the workout (platform-defined units)."
+        description: "{{ doc('total_output') }}"
         tests:
           - dbt_utils.expression_is_true:
               expression: ">=0"

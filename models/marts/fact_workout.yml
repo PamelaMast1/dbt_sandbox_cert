@@ -10,6 +10,8 @@ models:
       - name: workout_timestamp
         description: "{{ doc('workout_timestamp') }}"
         tests: [not_null]
+      - name: total_output 
+        description: "{{ doc('total_output') }}"
       - name: workout_date
         tests: [not_null]
       - name: length_minutes

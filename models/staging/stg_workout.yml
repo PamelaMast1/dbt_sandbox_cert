@@ -22,7 +22,7 @@ models:
         description: "{{ doc('class_title') }}"
 
       - name: total_output
-        description: "Total measured output for the session."
+        description: "{{ doc('total_output') }}"
 
       - name: avg_watts
         description: "Average power output (watts)."

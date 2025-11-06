@@ -25,4 +25,8 @@ Duration of the workout in minutes.
 Title/name of the workout class.
 {% enddocs %}
 
+{% docs total_output%}
+Total output for the session (platform-specific units)
+{% enddocs %}
+
 

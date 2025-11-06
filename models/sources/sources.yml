@@ -24,7 +24,7 @@ sources:
           - name: class_title
             description: "{{ doc('class_title') }}"
           - name: total_output
-            description: "Total output for the session (platform-specific units)"
+            description: "{{ doc('total_output') }}"
           - name: avg_watts
             description: "Average power output in watts"
           - name: distance_km
