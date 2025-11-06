@@ -1,4 +1,3 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
@@ -22,26 +21,17 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 docs-paths: ["docs"]
-#snapshot-paths: ["snapshots"]
-
-target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
 on-run-start:
-  - "{% do run_query('CREATE SCHEMA IF NOT EXISTS `'
-        ~ target.project ~ '`.audit') %}"
-  - "{% do run_query('CREATE TABLE IF NOT EXISTS `'
-        ~ target.project ~ '`.audit.run_log (invocation_id STRING, started_at TIMESTAMP, ended_at TIMESTAMP, user STRING, status STRING)') %}"
-  - "{% do run_query('INSERT INTO `'
-        ~ target.project ~ '`.audit.run_log (invocation_id, started_at, ended_at, user, status) '
-        ~ 'VALUES (\\'' ~ invocation_id ~ '\\', CURRENT_TIMESTAMP(), NULL, SESSION_USER(), \\'' ~ 'running' ~ '\\')') %}"
+  - "{% do run_query('CREATE SCHEMA IF NOT EXISTS `' ~ target.project ~ '`.audit') %}"
+  - "{% do run_query('CREATE TABLE IF NOT EXISTS `' ~ target.project ~ '`.audit.run_log (invocation_id STRING, started_at TIMESTAMP, ended_at TIMESTAMP, user STRING, status STRING)') %}"
+  - "{% do run_query('INSERT INTO `' ~ target.project ~ '`.audit.run_log (invocation_id, started_at, ended_at, user, status) ' ~ 'VALUES (\\'' ~ invocation_id ~ '\\', CURRENT_TIMESTAMP(), NULL, SESSION_USER(), \\'' ~ 'running' ~ '\\')') %}"
 
 on-run-end:
-  - "{% do run_query('UPDATE `'
-        ~ target.project ~ '`.audit.run_log SET ended_at = CURRENT_TIMESTAMP(), status = \\'' ~ 'finished' ~ '\\' '
-        ~ 'WHERE invocation_id = \\'' ~ invocation_id ~ '\\'') %}"
+  - "{% do run_query('UPDATE `' ~ target.project ~ '`.audit.run_log SET ended_at = CURRENT_TIMESTAMP(), status = \\'' ~ 'finished' ~ '\\' ' ~ 'WHERE invocation_id = \\'' ~ invocation_id ~ '\\'') %}"
 
 
 # Configuring models
@@ -60,12 +50,11 @@ models:
     columns: true
   dbt_sandbox_cert:
     staging:
-      schema: staging
+      +schema: staging
     intermediate:
-      schema: intermediate
+      +schema: intermediate
     marts:
-      schema: marts
-  
+      +schema: marts
 seeds:
   +persist_docs:
     relation: true
@@ -73,18 +62,21 @@ seeds:
   dbt_sandbox_cert:
     +schema: reference
     +quote_columns: false
-    fitness_disciplines:
-      +schema: reference
-      +column_types:
-        fitness_discipline: string
-        is_active: boolean 
-    fitness_types:
-      +schema: reference
-      +column_types:
-        fitness_type: string
-        is_active: boolean 
+    +meta:
+      fitness_disciplines:
+        +schema: reference
+        +column_types:
+          fitness_discipline: string
+          is_active: boolean
+      fitness_types:
+        +schema: reference
+        +column_types:
+          fitness_type: string
+          is_active: boolean
 
 tests:
   dbt_sandbox_cert:
     +store_failures: true
     +schema: tests
+flags:
+  require_generic_test_arguments_property: true
