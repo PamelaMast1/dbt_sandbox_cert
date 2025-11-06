@@ -26,7 +26,7 @@ models:
               expression: ">=0"
 
       - name: class_title
-        description: "Workout/class title as provided by the source."
+        description: "{{ doc('class_title') }}"
 
       - name: total_output
         description: "Total output/effort for the workout (platform-defined units)."

@@ -21,5 +21,8 @@ UTC timestamp when the workout started.
 Duration of the workout in minutes.
 {% enddocs %}
 
+{% docs class_title%}
+Title/name of the workout class.
+{% enddocs %}
 
 

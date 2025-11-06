@@ -22,7 +22,7 @@ sources:
           - name: length_minutes
             description: "{{ doc('length_minutes') }}"
           - name: class_title
-            description: "Title/name of the workout class"
+            description: "{{ doc('class_title') }}"
           - name: total_output
             description: "Total output for the session (platform-specific units)"
           - name: avg_watts
