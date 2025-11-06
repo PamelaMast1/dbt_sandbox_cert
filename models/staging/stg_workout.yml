@@ -11,18 +11,18 @@ models:
           - unique
 
       - name: workout_timestamp
-        description: "Event time of the workout."
+        description: "{{ doc('workout_timestamp') }}"
         tests:
           - not_null
 
       - name: length_minutes
-        description: "Workout duration (minutes)."
+        description: "{{ doc('length_minutes') }}"
 
       - name: class_title
-        description: "Workout/class title."
+        description: "{{ doc('class_title') }}"
 
       - name: total_output
-        description: "Total measured output for the session."
+        description: "{{ doc('total_output') }}"
 
       - name: avg_watts
         description: "Average power output (watts)."

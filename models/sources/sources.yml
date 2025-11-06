@@ -18,13 +18,13 @@ sources:
           - name: workout_id
             description: "{{ doc('workout_id') }}"
           - name: workout_timestamp
-            description: "UTC timestamp when the workout started"
+            description: "{{ doc('workout_timestamp') }}"
           - name: length_minutes
-            description: "Duration of the workout in minutes"
+            description: "{{ doc('length_minutes') }}"
           - name: class_title
-            description: "Title/name of the workout class"
+            description: "{{ doc('class_title') }}"
           - name: total_output
-            description: "Total output for the session (platform-specific units)"
+            description: "{{ doc('total_output') }}"
           - name: avg_watts
             description: "Average power output in watts"
           - name: distance_km
