@@ -1,0 +1,19 @@
+version: 2
+
+exposures:
+  - name: fitness_dashboard
+    label: "Fitness Progress Dashboard"
+    type: dashboard
+    maturity: high
+    url: "https://streamlit.fitness-dashboard"
+    description: |
+      The main Streamlit dashboard for visualising workout performance trends,
+      intensity bands, calorie burn, and instructor stats. 
+      This dashboard is powered by the `workout` model.
+
+    depends_on:
+      - ref('workout')
+
+    owner:
+      name: "Pamela Masters"
+      email: "pamela@schemanest.com"
