@@ -1,7 +1,9 @@
-{{
+{{ 
   config(
-    unique_key=['workout_id']
-  )
+    unique_key   = ['workout_id'],
+    partition_by = ({'field': 'workout_date', 'data_type': 'date'}) if target.name == 'prod' else none,
+    cluster_by   = (['fitness_discipline', 'instructor']) if target.name == 'prod' else []
+  ) 
 }}
 
 SELECT workout_id,
@@ -11,7 +13,7 @@ SELECT workout_id,
        instructor,
        length_minutes,
        total_output,
-       ROUND((total_output / NULLIF(length_minutes, 0)), 2)AS output_per_min,
+       ROUND((total_output / NULLIF(length_minutes, 0)), 2) AS output_per_min,
        distance_km,
        calories_burned,
        avg_heartrate_bpm,
@@ -24,3 +26,6 @@ SELECT workout_id,
        END AS intensity_band,
        NULLIF(avg_watts, 0) AS avg_watts
 FROM {{ ref('stg_workout') }}
+{% if target.name != 'prod' and var('apply_dev_date_filter', true) %}
+    WHERE DATE(workout_timestamp) >= date_sub(current_date(), interval 1 year)
+{% endif %}
