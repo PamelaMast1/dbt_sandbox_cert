@@ -13,3 +13,4 @@ seeds:
         description: "Flag indicating whether the discipline is currently in use."
         tests:
           - not_null
+          
