@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: agg_workout_by_day
+    tests:
+      - not_null:
+          column_name: workout_date
+
+  - name: agg_workout_by_instructor
+    tests:
+      - not_null:
+          column_name: instructor
