@@ -61,6 +61,10 @@ models:
       - name: fitness_discipline
         description: "High-level workout type/discipline (e.g., Cycling, Running)."
 
-      - name: instructor
-        description: "Instructor name or pseudonym."
+      - name: intensity_band
+        description: "Banding based on output_per_min"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Moderate', 'High', 'n/a']
 
