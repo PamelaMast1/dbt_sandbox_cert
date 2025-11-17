@@ -1,0 +1,17 @@
+version: 2
+
+seeds:
+  - name: test_customers
+    description: test customer data that should never be deployed to prod
+    columns:
+      - name: username
+        description: "Test customer username."
+        tests:
+          - unique
+          - not_null
+      - name: is_active
+        description: "Flag indicating whether the customer username currently in use."
+        tests:
+          - not_null
+
+

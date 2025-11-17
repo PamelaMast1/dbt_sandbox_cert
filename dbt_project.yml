@@ -54,6 +54,7 @@ models:
       +schema: intermediate
     marts:
       +schema: marts
+
 seeds:
   +persist_docs:
     relation: true
@@ -61,17 +62,20 @@ seeds:
   dbt_sandbox_cert:
     +schema: reference
     +quote_columns: false
-    +meta:
-      fitness_disciplines:
-        +schema: reference
-        +column_types:
-          fitness_discipline: string
-          is_active: boolean
-      fitness_types:
-        +schema: reference
-        +column_types:
-          fitness_type: string
-          is_active: boolean
+    fitness_disciplines:
+      +column_types:
+        fitness_discipline: string
+        is_active: boolean
+    fitness_types:
+      +column_types:
+        fitness_type: string
+        is_active: boolean
+    test_customers:
+      +enabled: "{{ target.name == 'dev' }}" 
+      +column_types:
+        username: string
+        is_active: boolean
+
 
 tests:
   dbt_sandbox_cert:
