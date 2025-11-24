@@ -2,8 +2,9 @@
   config(
     unique_key   = ['workout_id'],
     partition_by = ({'field': 'workout_date', 'data_type': 'date'}) if target.name == 'prod' else none,
-    cluster_by   = (['fitness_discipline', 'instructor']) if target.name == 'prod' else []
-  ) 
+    cluster_by   = (['fitness_discipline', 'instructor']) if target.name == 'prod' else [],
+    grants = ({'roles/bigquery.dataViewer': ['user:pamela@schemanest.com']}) if target.name == 'prod' else {}
+ )
 }}
 
 SELECT workout_id,
