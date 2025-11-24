@@ -3,6 +3,7 @@ version: 2
 models:
   - name: workout
     description: "Curated workout facts built from stg_workout."
+    deprecation_date: 2999-01-01 00:00:00.00+00:00
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments: 
@@ -72,5 +73,6 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['Low', 'Moderate', 'High', 'n/a']
+              arguments:
+                values: ['Low', 'Moderate', 'High', 'n/a']
 
