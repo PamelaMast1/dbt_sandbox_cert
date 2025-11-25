@@ -22,7 +22,8 @@ models:
                 field: workout_id
       - name: target_name
         description: "Name of the target environment - specified in profiles.yml"
-
+      - name: dbt_environment_name
+        description: "Name of the target environment - specified from the enviroment vars"
       - name: target.database
         description: >
           The database name for the current dbt target. This is the database that

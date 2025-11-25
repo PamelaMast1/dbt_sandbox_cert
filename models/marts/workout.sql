@@ -1,3 +1,5 @@
+{% set env_name = env_var('DBT_ENVIRONMENT_NAME', 'local') %}
+
 {{ 
   config(
     materialized = 'table',
@@ -17,6 +19,7 @@
 
 SELECT workout_id,
        '{{ target.name }}' AS target_name,
+       '{{ env_name }}' as dbt_environment_name,
        '{{ target.database }}' AS target_database,
        '{{ target.schema}}' AS target_schema,
        '{{ target.profile_name}}' AS target_profile_name,
