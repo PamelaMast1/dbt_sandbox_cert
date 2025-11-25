@@ -10,6 +10,7 @@ Welcome to my sandbox dbt project!!!
 # dbt project set up. 
 1. Generate the source tables with small amounts of test data - 
    dbt run-operation bootstrap_sources_raw_workout_data
+   If you delete the table you might need to add {{ config(enabled = false) }} to the models
 
 
 ### Resources:

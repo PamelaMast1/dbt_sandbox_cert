@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: daily_workout_summary_v
+    description: >
+      Logical view over the workout model. Always queries the latest underlying
+      workout data at read time, so it is always up to date but can be more
+      expensive for frequent dashboard queries.

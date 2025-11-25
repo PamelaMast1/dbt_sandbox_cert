@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: daily_workout_summary_mv
+    description: >
+      Materialised (table) version of the same daily workout summary. Data is
+      precomputed during dbt runs, making it faster and cheaper to query but
+      only as fresh as the last dbt run. This model is used as an example of a
+      materialised view in the project.

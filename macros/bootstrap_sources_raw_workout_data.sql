@@ -40,15 +40,21 @@
              210.0 AS avg_watts, 14.2 AS distance_km, 350 AS calories_burned,
              145 AS avg_heartrate_bpm, 'Cycling' AS fitness_discipline, 'John dbt' AS instructor,
              TIMESTAMP('2025-11-05 18:30:00+00') AS INSERT_TIMESTAMP,
-             3 AS ROW_COUNT),
+             4 AS ROW_COUNT),
       STRUCT('w2', TIMESTAMP('2025-10-02 18:30:00+00'),
              45, 'Endurance Run', 500.0,
              185.0, 8.5, 520,
-             152, 'Treadmill', 'Jen dbt', TIMESTAMP('2025-11-05 18:30:00+00'), 3),
+             152, 'Treadmill', 'Jen dbt', TIMESTAMP('2025-11-05 18:30:00+00'), 4),
       STRUCT('w3', TIMESTAMP('2025-10-03 07:15:00+00'),
              20, 'Yoga Flow', 120.0,
              NULL, 0.0, 80,
-             98, 'Yoga', 'Tim dbt', TIMESTAMP('2025-11-05 18:30:00+00'), 3)
+             98, 'Yoga', 'Tim dbt', TIMESTAMP('2025-11-05 18:30:00+00'), 4),
+      STRUCT('w4' AS workout_id, TIMESTAMP('2025-10-01 09:00:00+00') AS workout_timestamp,
+             50 AS length_minutes, 'HIIT Ride' AS class_title, 320.5 AS total_output,
+             210.0 AS avg_watts, 14.2 AS distance_km, 350 AS calories_burned,
+             145 AS avg_heartrate_bpm, 'Cycling' AS fitness_discipline, 'John dbt' AS instructor,
+             TIMESTAMP('2025-11-25 18:30:00+00') AS INSERT_TIMESTAMP,
+             4 AS ROW_COUNT)
     ])
     WHERE NOT EXISTS (
       SELECT 1

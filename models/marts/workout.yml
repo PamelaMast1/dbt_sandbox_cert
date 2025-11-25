@@ -10,6 +10,8 @@ models:
             combination_of_columns:
               - workout_date
               - fitness_discipline
+            config:
+              severity: warn
     columns:
       - name: workout_id
         description: "{{ doc('workout_id') }}"
