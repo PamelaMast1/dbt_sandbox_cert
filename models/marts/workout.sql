@@ -1,11 +1,17 @@
 {{ 
   config(
+    materialized = 'table',
     unique_key   = ['workout_id'],
-    partition_by = ({'field': 'workout_date', 'data_type': 'date'}) if target.name == 'prod' else none,
-    cluster_by   = (['fitness_discipline', 'instructor']) if target.name == 'prod' else [],
-    grants = ({'roles/bigquery.dataViewer': ['user:pamela@schemanest.com']}) if target.name == 'prod' else {}
  )
 }}
+
+{% if target.name == 'prod' %}
+  {{ config(
+      partition_by = {"field": "workout_date", "data_type": "date"},
+      cluster_by   = ['fitness_discipline', 'instructor'],
+      grants       = {'roles/bigquery.dataViewer': ['user:pamela@schemanest.com']}
+  ) }}
+{% endif %}
 
 SELECT workout_id,
        workout_timestamp,
