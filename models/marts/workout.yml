@@ -20,6 +20,30 @@ models:
               arguments:
                 to: ref('stg_workout')
                 field: workout_id
+      - name: target_name
+        description: "Name of the target environment - specified in profiles.yml"
+
+      - name: target.database
+        description: >
+          The database name for the current dbt target. This is the database that
+          dbt will create objects in for this run (e.g. your dev or prod database).
+
+      - name: target.schema
+        description: >
+          The schema name for the current dbt target. dbt uses this to decide which
+          schema to build models into (often different per environment, like dev vs prod).
+
+      - name: target.profile_name
+        description: >
+          The name of the active dbt profile being used for this run. This ties back
+          to the connection configuration in profiles.yml or the dbt Cloud environment.
+
+      - name: dbt_run_started_at
+        description: "Time the dbt run started"
+
+      - name: dbt_invocation_id
+        description: "dbt unique id for the run."
+
       - name: workout_timestamp
         description: "{{ doc('workout_timestamp') }}"
         tests:

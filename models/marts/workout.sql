@@ -13,7 +13,15 @@
   ) }}
 {% endif %}
 
+{{ log("Building " ~ this.schema ~ "." ~ this.name ~ " in target " ~ target.name, info=True) }}
+
 SELECT workout_id,
+       '{{ target.name }}' AS target_name,
+       '{{ target.database }}' AS target_database,
+       '{{ target.schema}}' AS target_schema,
+       '{{ target.profile_name}}' AS target_profile_name,
+       TIMESTAMP('{{ run_started_at }}') AS dbt_run_started_at,
+       '{{ invocation_id }}' AS dbt_invocation_id,
        workout_timestamp,
        DATE(workout_timestamp) AS workout_date,
        fitness_discipline,
@@ -35,4 +43,8 @@ SELECT workout_id,
 FROM {{ ref('stg_workout') }}
 {% if target.name != 'prod' and var('apply_dev_date_filter', true) %}
     WHERE DATE(workout_timestamp) >= date_sub(current_date(), interval 1 year)
+{% endif %}
+
+{% if flags.FULL_REFRESH %}
+  {{ log("Running in FULL_REFRESH mode, doing extra cleanup", info=True) }}
 {% endif %}
