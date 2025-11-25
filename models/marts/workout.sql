@@ -1,4 +1,4 @@
-{% set env_name = env_var('DBT_ENVIRONMENT_NAME', 'local') %}
+{% set env_name = env_var('DBT_ENV_TIER', 'local') %}
 
 {{ 
   config(
@@ -7,7 +7,7 @@
  )
 }}
 
-{% if target.name == 'prod' %}
+{% if env_name == 'prod' %}
   {{ config(
       partition_by = {"field": "workout_date", "data_type": "date"},
       cluster_by   = ['fitness_discipline', 'instructor'],
@@ -15,7 +15,7 @@
   ) }}
 {% endif %}
 
-{{ log("Building " ~ this.schema ~ "." ~ this.name ~ " in target " ~ target.name, info=True) }}
+{{ log("Building " ~ this.schema ~ "." ~ this.name ~ " in target " ~ env_name, info=True) }}
 
 SELECT workout_id,
        '{{ target.name }}' AS target_name,
@@ -44,7 +44,7 @@ SELECT workout_id,
        END AS intensity_band,
        NULLIF(avg_watts, 0) AS avg_watts
 FROM {{ ref('stg_workout') }}
-{% if target.name != 'prod' and var('apply_dev_date_filter', true) %}
+{% if env_name != 'prod' and var('apply_dev_date_filter', true) %}
     WHERE DATE(workout_timestamp) >= date_sub(current_date(), interval 1 year)
 {% endif %}
 
