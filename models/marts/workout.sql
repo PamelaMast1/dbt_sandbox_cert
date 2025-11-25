@@ -5,7 +5,7 @@
  )
 }}
 
-{% if target.name == 'Prod' %}
+{% if target.name == 'prod' %}
   {{ config(
       partition_by = {"field": "workout_date", "data_type": "date"},
       cluster_by   = ['fitness_discipline', 'instructor'],
@@ -33,6 +33,6 @@ SELECT workout_id,
        END AS intensity_band,
        NULLIF(avg_watts, 0) AS avg_watts
 FROM {{ ref('stg_workout') }}
-{% if target.name != 'Prod' and var('apply_dev_date_filter', true) %}
+{% if target.name != 'prod' and var('apply_dev_date_filter', true) %}
     WHERE DATE(workout_timestamp) >= date_sub(current_date(), interval 1 year)
 {% endif %}
