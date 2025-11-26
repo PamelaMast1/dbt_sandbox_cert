@@ -15,6 +15,7 @@ SELECT  r.workout_id,
         r.avg_heartrate_bpm,
         r.fitness_discipline,
         r.instructor,
+        'Asia/Tokyo' AS workout_timezone,
         r.INSERT_TIMESTAMP,
         r.ROW_COUNT,
         row_number() OVER (PARTITION BY workout_id

@@ -39,6 +39,9 @@ models:
       - name: fitness_discipline
         description: "Discipline (e.g., CYCLING, TREADMILL, YOGA)."
 
+      - name: workout_timezone
+        description: "Timezone of the workout."
+
       - name: instructor
         description: "Instructor display name."
 

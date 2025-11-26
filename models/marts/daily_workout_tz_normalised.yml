@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: daily_workout_tz_normalised
+    config:
+      enabled: false
