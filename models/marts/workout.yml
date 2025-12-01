@@ -3,6 +3,10 @@ version: 2
 models:
   - name: workout
     description: "Curated workout facts built from stg_workout."
+    config:
+      contract:
+        enforced: true
+        alias_types: true  # flip to false to see behaviour
     deprecation_date: 2999-01-01 00:00:00.00+00:00
     tests:
       - dbt_utils.unique_combination_of_columns:
@@ -15,6 +19,7 @@ models:
     columns:
       - name: workout_id
         description: "{{ doc('workout_id') }}"
+        data_type: STRING
         tests:
           - not_null
           - unique
@@ -24,82 +29,118 @@ models:
                 field: workout_id
       - name: target_name
         description: "Name of the target environment - specified in profiles.yml"
+        data_type: STRING
       - name: dbt_environment_name
         description: "Name of the target environment - specified from the enviroment vars"
-      - name: target.database
+        data_type: STRING
+      - name: target_database
         description: >
           The database name for the current dbt target. This is the database that
           dbt will create objects in for this run (e.g. your dev or prod database).
+        data_type: STRING
 
-      - name: target.schema
+      - name: target_schema
         description: >
           The schema name for the current dbt target. dbt uses this to decide which
           schema to build models into (often different per environment, like dev vs prod).
+        data_type: STRING
 
-      - name: target.profile_name
+      - name: target_profile_name
         description: >
           The name of the active dbt profile being used for this run. This ties back
           to the connection configuration in profiles.yml or the dbt Cloud environment.
+        data_type: STRING
 
       - name: dbt_run_started_at
         description: "Time the dbt run started"
+        data_type: TIMESTAMP
 
       - name: dbt_invocation_id
         description: "dbt unique id for the run."
+        data_type: STRING
 
       - name: workout_timestamp
         description: "{{ doc('workout_timestamp') }}"
+        data_type: TIMESTAMP
         tests:
           - not_null
 
       - name: length_minutes
         description: "{{ doc('length_minutes') }}"
+        data_type: INT
         tests:
           - not_null
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
-      - name: class_title
-        description: "{{ doc('class_title') }}"
 
       - name: total_output
         description: "{{ doc('total_output') }}"
+        data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: avg_watts
         description: "Average power in watts (if applicable)."
+        data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: distance_km
         description: "Distance covered in kilometers (if applicable)."
+        data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: calories_burned
         description: "Estimated calories burned."
+        data_type: INT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: avg_heartrate_bpm
         description: "Average heart rate in beats per minute."
+        data_type: INT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: fitness_discipline
         description: "High-level workout type/discipline (e.g., Cycling, Running)."
+        data_type: STRING
 
       - name: intensity_band
         description: "Banding based on output_per_min"
+        data_type: STRING
         tests:
           - not_null
           - accepted_values:
               arguments:
                 values: ['Low', 'Moderate', 'High', 'n/a']
+      - name: avg_speed_kmh
+        description: "Average speed in kmh (if applicable)."
+        data_type: FLOAT
 
+      - name: default_schema_naming_convention
+        description: "To demostrate how dbt names models."
+        data_type: STRING
+
+      - name: instructor
+        description: "instructor name."
+        data_type: STRING
+
+      - name: output_per_min
+        description: "output per min"
+        data_type: FLOAT
+
+      - name: instructor
+        description: "instructor name."
+        data_type: STRING
+
+      - name: workout_date
+        description: "workout date"
+        data_type: DATE
