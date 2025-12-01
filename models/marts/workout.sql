@@ -23,6 +23,7 @@ SELECT workout_id,
        '{{ target.database }}' AS target_database,
        '{{ target.schema}}' AS target_schema,
        '{{ target.profile_name}}' AS target_profile_name,
+       '{{ this.schema }}' as default_schema_naming_convention,  --target.schema + schema (dbt - marts)
        TIMESTAMP('{{ run_started_at }}') AS dbt_run_started_at,
        '{{ invocation_id }}' AS dbt_invocation_id,
        workout_timestamp,
