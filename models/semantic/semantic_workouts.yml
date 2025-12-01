@@ -1,0 +1,44 @@
+semantic_models:
+  - name: workouts_semantic
+    model: ref('fact_workout')  
+  
+    defaults:
+      agg_time_dimension: workout_date
+
+    entities:
+      - name: workout
+        type: primary
+        expr: workout_id
+
+    measures:
+      - name: total_output
+        agg: sum
+        expr: total_output
+
+      - name: total_calories
+        agg: sum
+        expr: calories_burned
+
+    dimensions:
+      - name: workout_date
+        type: time
+        expr: workout_date
+        type_params:
+          time_granularity: day
+
+      - name: fitness_discipline
+        type: categorical
+        expr: fitness_discipline
+
+metrics:
+  - name: total_output_metric
+    type: simple
+    label: "Total Output"
+    type_params:
+      measure: total_output
+
+  - name: total_calories_metric
+    type: simple
+    label: "Total Calories Burned"
+    type_params:
+      measure: total_calories
