@@ -3,6 +3,16 @@ version: 2
 models:
   - name: fact_workout
     description: "Workout fact view built from ephemeral metrics."
+    latest_version: 2 
+    versions:
+      - v: 1
+        defined_in: fact_workout_v1
+      - v: 2
+        config:
+          alias: fact_workout
+        columns: 
+        - include: all 
+          exclude: [avg_watts]
     columns:
       - name: workout_id
         description: "{{ doc('workout_id') }}"
@@ -30,3 +40,9 @@ models:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">= 0"
+      - name: avg_watts
+        description: "Average power in watts (if applicable)."
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">=0"

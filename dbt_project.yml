@@ -44,10 +44,10 @@ on-run-end:
 # using the `{{ config(...) }}` macro.
 
 models:
-  +persist_docs:
-    relation: true
-    columns: true
   dbt_sandbox_cert:
+    +persist_docs:
+      relation: true
+      columns: true
     staging:
       +schema: staging
     intermediate:
