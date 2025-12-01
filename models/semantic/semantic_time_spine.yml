@@ -1,0 +1,10 @@
+models:
+  - name: semantic_time_spine
+    description: "Daily time spine table for the dbt Semantic Layer"
+    time_spine:
+      standard_granularity_column: date_day
+
+    columns:
+      - name: date_day
+        description: "Date at day grain"
+        granularity: day
