@@ -5,6 +5,10 @@ name: 'dbt_sandbox_cert'
 version: '1.0.0'
 config-version: 2
 
+# var overrides
+vars:
+  surrogate_key_treat_nulls_as_empty_strings: true
+
 # This setting makes sure that only 'public' models will be exposed or referencable to other projects
 #restrict-access: true
 
@@ -83,3 +87,4 @@ tests:
     +schema: tests
 flags:
   require_generic_test_arguments_property: true
+
