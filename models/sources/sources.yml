@@ -4,6 +4,10 @@ sources:
   - name: raw
     database: "{{ target.project }}"
     schema: sources
+    quoting:
+      database: true
+      schema: true
+      identifier: false
     description: "Raw workout events"
     tables:
       - name: raw_workout_data
