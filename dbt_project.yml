@@ -5,6 +5,9 @@ name: 'dbt_sandbox_cert'
 version: '1.0.0'
 config-version: 2
 
+# Can define a target path where artifacts location can be chosen
+target-path: "target"  # set it as the default
+
 # var overrides
 vars:
   surrogate_key_treat_nulls_as_empty_strings: true
