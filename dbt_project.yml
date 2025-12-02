@@ -17,8 +17,8 @@ vars:
 
 # set how dbt quotes different identifiers 
 quoting:
-  database: false
-  schema: false
+  database: true
+  schema: true
   identifier: false
 
 # This setting configures which "profile" dbt uses for this project.
