@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: workout_is_null_override_check
+    description: "Overriding generic tests"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: workout_id
+        description: "{{ doc('workout_id') }}"
+        data_type: STRING
+        tests:
+          - not_null
+          - unique
+     
+      - name: fitness_discipline
+        description: "High-level workout type/discipline (e.g., Cycling, Running)."
+        data_type: STRING
+        tests:
+          - not_null
+
+      - name: is_deleted
+        description: "Indicate row has been soft deleted"
+        data_type: BOOLEAN
+        tests:
+          - not_null
