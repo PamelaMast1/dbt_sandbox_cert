@@ -1,0 +1,9 @@
+name: 'demo_alt_project'
+version: '1.0'
+config-version: 2
+
+profile: 'default'
+
+models:
+  demo_alt_project:
+    +materialized: view

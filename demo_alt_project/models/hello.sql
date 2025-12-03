@@ -1,0 +1,1 @@
+SELECT 'hi from custom project-dir!' AS msg
