@@ -3,7 +3,8 @@ walking,TRUE
 running,TRUE
 stretching,TRUE
 strength,TRUE
-cycling,TRUE
+cycling,FALSE
 yoga,TRUE
 swimming,TRUE
 climbing,FALSE
+skiing,FALSE

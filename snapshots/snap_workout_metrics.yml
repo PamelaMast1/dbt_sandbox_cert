@@ -1,0 +1,5 @@
+version: 2
+
+snapshots:
+  - name: snap_workout_metrics
+    description: "Snapshot Model for workout metrics."
