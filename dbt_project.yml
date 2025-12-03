@@ -75,6 +75,19 @@ seeds:
   dbt_sandbox_cert:
     +schema: reference
     +quote_columns: false
+    +post-hook:  # you can add post hooks to seeds
+      - >
+        INSERT INTO `{{ target.project }}.{{ target.schema }}_meta.seed_run_history` (
+          seed_name,
+          loaded_at,
+          row_count,
+          run_id
+        )
+        SELECT '{{ this.name }}' AS seed_name,
+                CURRENT_TIMESTAMP()    AS loaded_at,
+                COUNT(*)               AS row_count,
+                '{{ invocation_id }}'  AS run_id
+        FROM {{ this }}
     fitness_disciplines:
       +column_types:
         fitness_discipline: string
