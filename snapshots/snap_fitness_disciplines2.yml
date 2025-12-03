@@ -1,0 +1,6 @@
+version: 2
+
+snapshots:
+  - name: snap_fitness_disciplines2
+    description: "Snapshot Model for fitness disciplines2."
+   
