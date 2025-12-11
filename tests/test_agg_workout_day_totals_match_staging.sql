@@ -3,7 +3,7 @@
 WITH stg AS (
     SELECT DATE(workout_timestamp) AS workout_date,
            SUM(total_output) AS total_output
-    FROM {{ ref('stg_workout') }}
+    FROM {{ ref('int_workout') }}
     GROUP BY workout_date
 ),
 

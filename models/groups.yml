@@ -1,0 +1,12 @@
+version: 2
+
+groups:
+  - name: workouts_core
+    owner:
+      name: Data Engineering
+      email: pamela@schemanest.com
+
+  - name: workouts_analytics
+    owner:
+      name: Data Analytics
+      email: pamela@schemanest.com

@@ -16,7 +16,7 @@ unit_tests:
         6-10 -> 'Moderate'
         > 10 -> 'High'
     given:
-      - input: ref('stg_workout')
+      - input: ref('int_workout')
         rows:
       # Case 1: Moderate (exactly 10)
           - workout_id: W1

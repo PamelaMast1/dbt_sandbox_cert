@@ -44,7 +44,7 @@ SELECT workout_id,
          ELSE 'High'
        END AS intensity_band,
        NULLIF(avg_watts, 0) AS avg_watts
-FROM {{ ref('stg_workout') }}
+FROM {{ ref('int_workout') }}
 {% if env_name != 'prod' and var('apply_dev_date_filter', true) %}
     WHERE DATE(workout_timestamp) >= date_sub(current_date(), interval 1 year)
 {% endif %}

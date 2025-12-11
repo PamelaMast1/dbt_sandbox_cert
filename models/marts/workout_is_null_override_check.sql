@@ -9,4 +9,4 @@
 SELECT workout_id,
        CAST(NULL AS STRING) AS fitness_discipline,
        TRUE AS is_deleted 
-FROM {{ ref('stg_workout') }}
+FROM {{ ref('int_workout') }}
