@@ -64,10 +64,16 @@ models:
       columns: true
     staging:
       +schema: staging
+      +access: private
+      +group: workouts_core
     intermediate:
       +schema: intermediate
+      +access: protected
+      +group: workouts_core
     marts:
       +schema: marts
+      +access: public
+      +group: workouts_analytics
 
 seeds:
   +persist_docs:
