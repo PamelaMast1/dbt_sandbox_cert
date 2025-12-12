@@ -1,6 +1,6 @@
 {{ config(
     materialized         = 'incremental',
-    incremental_strategy = 'insert_overwrite',
+    incremental_strategy = 'merge',
     partition_by = {
       'field': 'workout_date',
       'data_type': 'date'
