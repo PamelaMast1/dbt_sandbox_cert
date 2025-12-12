@@ -10,7 +10,7 @@
 ) }}
 
  -- limit how much of the target table BQ scans
-   -- incremental_predicates = [
+   --  incremental_predicates = [ 
      -- "DBT_INTERNAL_DEST.workout_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)"
 
 WITH test_data AS (
