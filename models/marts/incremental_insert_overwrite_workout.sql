@@ -57,7 +57,7 @@ FROM test_data
 
 
 -- 0 - Create the temp table
---  create or replace table `dbt-sandbox-dev`.`dbt_pmasters_marts`.incremental_insert_overwrite_workout__dbt_tmp
+--   create or replace table `dbt-sandbox-dev`.`dbt_pmasters_marts`.incremental_insert_overwrite_workout__dbt_tmp
       
 --     partition by workout_date
 --     cluster by fitness_discipline, instructor
