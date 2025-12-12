@@ -1,6 +1,8 @@
+{% set is_pr = target.schema.startswith('dbt_cloud_pr_') %}
+
 {{ config(
     materialized         = 'incremental',
-    incremental_strategy = 'merge',
+    incremental_strategy = ('merge' if is_pr else 'insert_overwrite'),
     partition_by = {
       'field': 'workout_date',
       'data_type': 'date'
