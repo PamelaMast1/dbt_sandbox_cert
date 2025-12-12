@@ -97,7 +97,5 @@ FROM test_data
 --     values
 --         (`workout_id`, `workout_timestamp`, `workout_date`, `fitness_discipline`, `instructor`, `length_minutes`)
 
--- ;
-
 --       -- 4. clean up the temp table
 --       drop table if exists `dbt-sandbox-dev`.`dbt_pmasters_marts`.incremental_insert_overwrite_workout__dbt_tmp
