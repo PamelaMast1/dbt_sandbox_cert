@@ -3,6 +3,8 @@ version: 2
 models:
   - name: stg_workout
     description: "Deduplicated workouts from source.raw_workout_data, keeping the latest row per workout_id by INSERT_TIMESTAMP then workout_timestamp."
+    config:
+      tags: ['staging', 'silver']
     columns:
       - name: workout_id
         description: "{{ doc('workout_id') }}"

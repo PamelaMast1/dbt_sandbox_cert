@@ -71,6 +71,10 @@ models:
       +access: protected
       +group: workouts_core
     marts:
+      +tags:
+        - "hourly"
+        - "analytics"
+        - "gold"
       +schema: marts
       +access: public
       +group: workouts_analytics
