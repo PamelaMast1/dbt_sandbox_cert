@@ -13,6 +13,8 @@ exposures:
 
     depends_on:
       - ref('workout')
+      - metric('total_output_metric')
+      - source('raw', 'raw_workout_data')
 
     owner:
       name: "Pamela Masters"
