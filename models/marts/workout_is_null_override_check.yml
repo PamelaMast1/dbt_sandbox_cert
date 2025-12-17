@@ -4,6 +4,7 @@ models:
   - name: workout_is_null_override_check
     description: "Overriding generic tests"
     config:
+      tags: ['override', 'pii']
       contract:
         enforced: true
     columns:
