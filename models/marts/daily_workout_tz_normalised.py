@@ -3,6 +3,7 @@ import pandas as pd
 
 # This model will not run on Bigquery without additional
 # config that is detailed here - https://docs.getdbt.com/guides/dbt-python-bigframes?step=1
+# this model won't run in Redshift
 def model(dbt, session):
     """
     Example dbt Python model that:
@@ -12,11 +13,16 @@ def model(dbt, session):
     """
 
     dbt.config(
-        materialized="table",
+        materialized="table", # only other option for py is incremental
         tags=["python", "timezone"]
+        # unique_key="workout_id"
     )
 
     workouts_df = dbt.ref("stg_workout")
+
+    # if dbt.is_incremental():
+    #     #do something
+
 
     # Ensure we’re working with datetimes
     workouts_df["workout_timestamp"] = pd.to_datetime(
@@ -34,6 +40,8 @@ def model(dbt, session):
         # Attach local timezone
         local_dt = row["workout_timestamp"].replace(tzinfo=local_zone)
 
+        # no control flow this is invalid in a .py model. so you cannot say if target.name= prod then do x
+
         # Convert to UTC
         utc_dt = local_dt.astimezone(utc_zone)
         return utc_dt
@@ -43,5 +51,6 @@ def model(dbt, session):
         convert_to_utc, axis=1
     )
 
-    # You can add further aggregations here if you want a true fact table
+    # has to return a dataframe
     return workouts_df
+
