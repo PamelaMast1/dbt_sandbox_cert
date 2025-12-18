@@ -40,7 +40,7 @@ def model(dbt, session):
         # Attach local timezone
         local_dt = row["workout_timestamp"].replace(tzinfo=local_zone)
 
-        # {# {% if target.name == "prod" %} #} - no control flow this is invalid in a .py model.
+        # no control flow this is invalid in a .py model. so you cannot say if target.name= prod then do x
 
         # Convert to UTC
         utc_dt = local_dt.astimezone(utc_zone)
