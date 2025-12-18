@@ -8,6 +8,14 @@ config-version: 2
 # Can define a target path where artifacts location can be chosen
 target-path: "target"  # set it as the default
 
+# Can define a Package installation path
+# This prevents version conflicts when multiple dbt projects are
+# developed or run in the same environment (local machine or CI).
+# This is particularly important in multi-project environments and
+# is a recommended best practice 
+
+packages-install-path: "dbt_packages_schemanest"
+
 # var overrides
 vars:
   surrogate_key_treat_nulls_as_empty_strings: true
