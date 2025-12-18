@@ -3,6 +3,7 @@ import pandas as pd
 
 # This model will not run on Bigquery without additional
 # config that is detailed here - https://docs.getdbt.com/guides/dbt-python-bigframes?step=1
+# this model won't run in Redshift
 def model(dbt, session):
     """
     Example dbt Python model that:
@@ -12,7 +13,7 @@ def model(dbt, session):
     """
 
     dbt.config(
-        materialized="table",
+        materialized="table", # only other option for py is incremental
         tags=["python", "timezone"]
     )
 
@@ -45,3 +46,5 @@ def model(dbt, session):
 
     # You can add further aggregations here if you want a true fact table
     return workouts_df
+
+    #{% if target.name == "prod" %} - no control this is invalid in a .py model.
