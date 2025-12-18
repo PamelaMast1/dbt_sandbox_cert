@@ -15,9 +15,14 @@ def model(dbt, session):
     dbt.config(
         materialized="table", # only other option for py is incremental
         tags=["python", "timezone"]
+        # unique_key="workout_id"
     )
 
     workouts_df = dbt.ref("stg_workout")
+
+    # if dbt.is_incremental():
+    #     #do something
+
 
     # Ensure we’re working with datetimes
     workouts_df["workout_timestamp"] = pd.to_datetime(
@@ -35,6 +40,8 @@ def model(dbt, session):
         # Attach local timezone
         local_dt = row["workout_timestamp"].replace(tzinfo=local_zone)
 
+        #{% if target.name == "prod" %} - no control flow this is invalid in a .py model.
+
         # Convert to UTC
         utc_dt = local_dt.astimezone(utc_zone)
         return utc_dt
@@ -44,7 +51,6 @@ def model(dbt, session):
         convert_to_utc, axis=1
     )
 
-    # You can add further aggregations here if you want a true fact table
+    # has to return a dataframe
     return workouts_df
 
-    #{% if target.name == "prod" %} - no control this is invalid in a .py model.
