@@ -19,3 +19,42 @@ exposures:
     owner:
       name: "Pamela Masters"
       email: "pamela@schemanest.com"
+
+    tags:
+      - streamlit
+
+    meta:
+      audience: personal
+      refresh_cadence: daily
+      pii: false
+      domain: health_fitness
+
+
+  - name: fitness_dashboard_deprec
+    label: "Fitness Progress Dashboard_deprec"
+    type: dashboard
+    maturity: low
+    url: "https://streamlit.fitness-dashboard2"
+    description: |
+      The original Streamlit dashboard for visualising workout performance trends,
+      intensity bands, calorie burn, and instructor stats. 
+      This dashboard is powered by the `workout` model.
+
+    depends_on:
+      - ref('workout')
+      - metric('total_output_metric')
+
+    owner:
+      name: "Pamela Masters"
+      email: "pamela@schemanest.com"
+
+    tags:
+      - streamlit
+
+    meta:
+      audience: personal
+      refresh_cadence: daily
+      pii: false
+      domain: health_fitness
+
+   

@@ -135,3 +135,8 @@ sources:
     stripe:              
       charges:             
         +enabled: false
+
+# only available in core
+# exposures:
+#   fitness_dashboard_deprec:
+#     +enabled: false
