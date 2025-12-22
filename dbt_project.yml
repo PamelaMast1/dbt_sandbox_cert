@@ -129,3 +129,9 @@ tests:
 flags:
   require_generic_test_arguments_property: true
 
+# disabling one source table in an installed package
+sources:
+  stripe_source:         
+    stripe:              
+      charges:             
+        +enabled: false
