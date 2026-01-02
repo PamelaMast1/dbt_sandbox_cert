@@ -119,8 +119,8 @@ models:
         tests:
           - not_null
           - accepted_values:
-              arguments:
-                values: ['Low', 'Moderate', 'High', 'n/a']
+              values: ['Low', 'Moderate', 'High', 'n/a']
+              quote: true
       - name: avg_speed_kmh
         description: "Average speed in kmh (if applicable)."
         data_type: FLOAT

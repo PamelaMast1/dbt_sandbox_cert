@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: workout_status
+    description: Test model for workout statuses
+    columns:
+      - name: status
+        description: Workout lifecycle status
+        tests:
+          - accepted_values:
+              values: ['pending', 'completed', 'cancelled']
+              quote: true
+              severity: warn
