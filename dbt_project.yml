@@ -23,6 +23,7 @@ vars:
 # This setting makes sure that only 'public' models will be exposed or referencable to other projects
 #restrict-access: true
 
+
 # set how dbt quotes different identifiers 
 quoting:
   database: true
@@ -127,7 +128,10 @@ tests:
     +store_failures: true
     +schema: tests
 flags:
+  # require all tests use arguments key
   require_generic_test_arguments_property: true
+  # converts all warnings into errors
+  # warn_error: true 
 
 # disabling one source table in an installed package
 sources:

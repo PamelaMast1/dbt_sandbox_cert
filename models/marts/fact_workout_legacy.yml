@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: fact_workout_legacy
+    description: "DEPRECATED: Do not use. Replaced by fct_workout."
+    deprecation_date: 2024-01-01 00:00:00.00+00:00
