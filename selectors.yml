@@ -1,0 +1,18 @@
+selectors:
+  - name: non_dep_marts
+    description: >
+      All mart models except deprecated ones
+    definition:
+      method: path
+      value: models/marts
+      exclude:
+        - method: tag
+          value: deprecated
+
+  - name: silver_inter
+    definition:
+      union:
+        - method: path
+          value: models/intermediate
+        - method: tag
+          value: silver
