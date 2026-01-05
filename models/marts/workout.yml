@@ -82,12 +82,21 @@ models:
               arguments:
                 expression: ">=0"
       - name: avg_watts
-        description: "Average power in watts (if applicable)."
+        description: 
+          Description silently overwritten due to duplicate but test still runs.
         data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
+
+      - name: avg_watts
+        description: > 
+          Average power in watts (if applicable).
+          This is all on the same line in manifest.json
+          Best for paragraph style descriptions
+        data_type: FLOAT
+     
       - name: distance_km
         description: "Distance covered in kilometers (if applicable)."
         data_type: FLOAT
@@ -103,7 +112,10 @@ models:
               arguments:
                 expression: ">=0"
       - name: avg_heartrate_bpm
-        description: "Average heart rate in beats per minute."
+        description: |
+          Avg heartrate bpm (if applicable).
+          Line breaks preserved the in manifest.json
+          Best for lists
         data_type: INT
         tests:
           - dbt_utils.expression_is_true:
