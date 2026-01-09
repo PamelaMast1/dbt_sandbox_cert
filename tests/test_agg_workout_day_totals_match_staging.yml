@@ -1,0 +1,4 @@
+data_tests:
+  - name: test_agg_workout_day_totals_match_staging
+    description: >
+      singular test to check workout totals.

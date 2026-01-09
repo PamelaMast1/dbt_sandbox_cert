@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: workout
-    description: "Curated workout facts built from stg_workout."
+    description: "![dbt Logo](https://github.com/dbt-labs/dbt-core/blob/main/etc/dbt-core.svg)"
     config:
       contract:
         enforced: true
@@ -21,8 +21,10 @@ models:
         description: "{{ doc('workout_id') }}"
         data_type: STRING
         tests:
-          - not_null
-          - unique
+          - not_null:
+              description: The workout_id is not null
+          - unique:
+              description: The workout_id is unique for every row in the model
           - relationships:
               arguments:
                 to: ref('int_workout')
@@ -56,7 +58,7 @@ models:
         data_type: TIMESTAMP
 
       - name: dbt_invocation_id
-        description: "dbt unique id for the run."
+        description: dbt unique id for the run.
         data_type: STRING
 
       - name: workout_timestamp
@@ -75,7 +77,7 @@ models:
                 expression: ">=0"
 
       - name: total_output
-        description: "{{ doc('total_output') }}"
+        description: "{{ doc('total_output') }}" # docs block
         data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
@@ -91,21 +93,21 @@ models:
                 expression: ">=0"
 
       - name: avg_watts
-        description: > 
+        description: >
           Average power in watts (if applicable).
           This is all on the same line in manifest.json
           Best for paragraph style descriptions
         data_type: FLOAT
      
       - name: distance_km
-        description: "Distance covered in kilometers (if applicable)."
+        description: Distance covered in kilometers (if applicable).
         data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">=0"
       - name: calories_burned
-        description: "Estimated calories burned."
+        description: "**[Read more](https://www.google.com/)**" # using some markdown
         data_type: INT
         tests:
           - dbt_utils.expression_is_true:
@@ -122,11 +124,11 @@ models:
               arguments:
                 expression: ">=0"
       - name: fitness_discipline
-        description: "High-level workout type/discipline (e.g., Cycling, Running)."
+        description: High-level workout type/discipline (e.g., Cycling, Running).
         data_type: STRING
 
       - name: intensity_band
-        description: "Banding based on output_per_min"
+        description: Banding based on output_per_min
         data_type: STRING
         tests:
           - not_null
@@ -134,15 +136,15 @@ models:
               values: ['Low', 'Moderate', 'High', 'n/a']
               quote: true
       - name: avg_speed_kmh
-        description: "Average speed in kmh (if applicable)."
+        description: Average speed in kmh (if applicable).
         data_type: FLOAT
 
       - name: default_schema_naming_convention
-        description: "To demostrate how dbt names models."
+        description: To demostrate how dbt names models.
         data_type: STRING
 
       - name: instructor
-        description: "instructor name."
+        description: instructor name.
         data_type: STRING
 
       - name: output_per_min
@@ -150,9 +152,9 @@ models:
         data_type: FLOAT
 
       - name: instructor
-        description: "instructor name."
+        description: instructor name.
         data_type: STRING
 
       - name: workout_date
-        description: "workout date"
+        description: workout date
         data_type: DATE

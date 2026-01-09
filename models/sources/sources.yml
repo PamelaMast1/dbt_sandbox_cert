@@ -2,16 +2,16 @@ version: 2
 
 sources:
   - name: raw
+    description: Raw workout events.
     database: "{{ target.project }}"
     schema: sources
     quoting:
       database: true
       schema: true
       identifier: false
-    description: "Raw workout events"
     tables:
       - name: raw_workout_data
-        description: "One row per workout session"
+        description: One row per workout session
         columns:
           - name: workout_id
             description: "{{ doc('workout_id') }}"

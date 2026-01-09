@@ -1,0 +1,9 @@
+version: 2
+
+analyses:
+  - name: workout_dbt_last_run
+    description: Ad hoc analyses
+
+    columns:
+      - name: workout_timestamp
+        description: Workout timestamp
