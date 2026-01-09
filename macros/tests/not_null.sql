@@ -1,7 +1,4 @@
 {% test not_null(model, column_name) %}
-    -- Custom override of the built-in not_null test.
-
-    -- Check if the model has is_deleted column
     {% set cols = adapter.get_columns_in_relation(model) %}
     {% set col_names = cols | map(attribute='name') | map('lower') | list %}
     {% set has_is_deleted = 'is_deleted' in col_names %}

@@ -3,4 +3,8 @@ version: 2
 snapshots:
   - name: snap_fitness_disciplines
     description: "Snapshot Model for fitness disciplines."
-   
+    columns:
+      - name: fitness_discipline
+        description: Fitness discipline from seed file.
+      - name: is_active
+        description: Is active toggle.

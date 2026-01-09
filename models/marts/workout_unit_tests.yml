@@ -2,10 +2,6 @@ version: 2
 
 unit_tests:
   - name: expected_workout_derivations_and_bands
-    model: workout
-    overrides:
-      vars:
-        apply_dev_date_filter: false  
     description: >
       Validates that the mart derives:
       - workout_date = DATE(workout_timestamp)
@@ -15,6 +11,10 @@ unit_tests:
         < 6  -> 'Low'
         6-10 -> 'Moderate'
         > 10 -> 'High'
+    model: workout
+    overrides:
+      vars:
+        apply_dev_date_filter: false  
     given:
       - input: ref('int_workout')
         rows:
