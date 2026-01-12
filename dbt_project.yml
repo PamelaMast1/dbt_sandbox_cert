@@ -16,9 +16,13 @@ target-path: "target"  # set it as the default
 
 packages-install-path: "dbt_packages_schemanest"
 
-# var overrides
+
 vars:
+  # var overrides
   surrogate_key_treat_nulls_as_empty_strings: true
+  
+  # vars
+  schemanest_source_enabled: true
 
 # This setting makes sure that only 'public' models will be exposed or referencable to other projects
 #restrict-access: true
@@ -135,7 +139,8 @@ flags:
 
 # disabling one source table in an installed package
 sources:
-  stripe_source:         
+  stripe_source:
+    +enabled: true        
     stripe:              
       charges:             
         +enabled: false
