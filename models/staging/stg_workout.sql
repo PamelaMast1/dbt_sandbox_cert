@@ -21,5 +21,5 @@ SELECT  r.workout_id,
         row_number() OVER (PARTITION BY workout_id
                            ORDER BY INSERT_TIMESTAMP DESC, workout_timestamp DESC
         ) as rn
-FROM {{ source('raw', 'raw_workout_data') }} AS r
+FROM {{ source('raw', 'rw_workout_data') }} AS r
 QUALIFY rn = 1
