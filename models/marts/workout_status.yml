@@ -8,6 +8,8 @@ models:
         description: Workout lifecycle status
         tests:
           - accepted_values:
-              values: ['pending', 'completed', 'cancelled']
-              quote: true
-              severity: warn
+              config:
+                severity: warn
+              arguments:
+                values: ['pending', 'completed', 'cancelled']
+                quote: true

@@ -7,10 +7,10 @@ models:
       contract:
         enforced: true
         alias_types: true  # flip to false to see behaviour
-    deprecation_date: 2999-01-01 00:00:00.00+00:00
+    deprecation_date: 2999-01-01 00:00:00+00:00
     tests:
       - dbt_utils.unique_combination_of_columns:
-          arguments: 
+          arguments:
             combination_of_columns:
               - workout_date
               - fitness_discipline
@@ -84,8 +84,7 @@ models:
               arguments:
                 expression: ">=0"
       - name: avg_watts
-        description: 
-          Description silently overwritten due to duplicate but test still runs.
+        description: Description silently overwritten due to duplicate but test still runs.
         data_type: FLOAT
         tests:
           - dbt_utils.expression_is_true:
@@ -98,7 +97,7 @@ models:
           This is all on the same line in manifest.json
           Best for paragraph style descriptions
         data_type: FLOAT
-     
+
       - name: distance_km
         description: Distance covered in kilometers (if applicable).
         data_type: FLOAT
@@ -133,8 +132,9 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['Low', 'Moderate', 'High', 'n/a']
-              quote: true
+              arguments:
+                values: ['Low', 'Moderate', 'High', 'n/a']
+                quote: true
       - name: avg_speed_kmh
         description: Average speed in kmh (if applicable).
         data_type: FLOAT
